@@ -14,7 +14,7 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
-@WebFilter("/*")
+@WebFilter(urlPatterns = {"/login/*","/stu/*","/admin/*","/sadmin/*"})
 public class Filter implements jakarta.servlet.Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -40,7 +40,6 @@ public class Filter implements jakarta.servlet.Filter {
             String permission;
             try {
                 User user = JwtUtil.verify(token,new User());
-                System.out.println("user:"+user);
                 id = user.getId();
                 permission = user.getPermission();
             } catch (Exception e) {

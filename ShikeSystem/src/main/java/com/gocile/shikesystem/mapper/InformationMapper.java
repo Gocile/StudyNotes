@@ -23,9 +23,9 @@ public interface InformationMapper extends BaseMapper<Information> {
 
     @Select("SELECT select_time "+
             "FROM information "+
-            "WHERE (grade = #{grade} OR grade IS NULL) "+
-            "AND (college = #{college} OR college IS NULL) "+
-            "AND (major = #{major} OR major IS NULL) "+
+            "WHERE (grade IS NULL OR grade = #{grade}) "+
+            "AND (college IS NULL OR college = #{college}) "+
+            "AND (major IS NULL OR major = #{major}) "+
             "AND (category = #{category} )")
     List<LocalDateTime> getSelectTimeByInfo(int grade,String college,String major,String category);
 

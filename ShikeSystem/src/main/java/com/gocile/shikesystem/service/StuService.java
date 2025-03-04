@@ -47,8 +47,7 @@ public class StuService {
 
     public Map<String, LocalDateTime> getCourseCategory(String id){
         List<Map<String,LocalDateTime>> mapList = informationMapper.getCourseCategory(id);
-        System.out.println(mapList);
-        return null;
+        return mapList.isEmpty()?null:mapList.get(0);
     }
 
     public List<Course> getCourseByCategory(String id, String category){
@@ -141,12 +140,12 @@ public class StuService {
             if(stuCourseList.isEmpty()) throw new  Exception();
             //再新增评价
             if(flag == 0){
-                CourseEvaluate courseEvaluate = new CourseEvaluate(content,stuId,courseId);
+                CourseEvaluate courseEvaluate = new CourseEvaluate(courseId,stuId,content);
                 courseEvaluateMapper.insert(courseEvaluate);
             }else {
                 //根据课程id查询管理员id
                 String adminId = courseMapper.getAdminIdByCourseId(courseId);
-                AdminEvaluate adminEvaluate = new AdminEvaluate(content,stuId,adminId);
+                AdminEvaluate adminEvaluate = new AdminEvaluate(adminId,stuId,content);
                 adminEvaluateMapper.insert(adminEvaluate);
             }
         } catch (Exception e) {
