@@ -5,7 +5,10 @@ import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+/*
+ * @Author Gocile
+ * @Description 建立学生和课程之间的映射关系
+ * */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

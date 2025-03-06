@@ -14,7 +14,8 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
-@WebFilter(urlPatterns = {"/login/*","/stu/*","/admin/*","/sadmin/*"})
+//这里不全部拦截的原因是方便swagger的请求，可以在调试完成之后改成"/*"
+@WebFilter(urlPatterns = {"/login/*","/stu/*","/admin/*","/sadmin/*"}/*"/*"*/)
 public class Filter implements jakarta.servlet.Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
