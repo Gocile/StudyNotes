@@ -3,6 +3,7 @@ package com.gocile.shikesystem.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.gocile.shikesystem.exception.OperationException;
 import com.gocile.shikesystem.mapper.*;
 import com.gocile.shikesystem.model.*;
 import com.gocile.shikesystem.response.BaseResponse;
@@ -139,10 +140,7 @@ public class SAdminService extends ServiceImpl<AdminEvaluateMapper,AdminEvaluate
                     .msg("设置成功")
                     .build();
         }catch (Exception e){
-            return BaseResponse.<String>builder()
-                    .success(false)
-                    .msg("设置失败，请重试")
-                    .build();
+            throw new OperationException("设置失败，请重试");
         }
     }
 

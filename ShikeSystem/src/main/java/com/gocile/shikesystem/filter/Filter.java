@@ -1,5 +1,6 @@
 package com.gocile.shikesystem.filter;
 
+import com.gocile.shikesystem.exception.NotLoggedInException;
 import com.gocile.shikesystem.model.User;
 import com.gocile.shikesystem.util.JwtUtil;
 import jakarta.servlet.*;
@@ -54,7 +55,8 @@ public class Filter implements jakarta.servlet.Filter {
                 servletRequest.setAttribute("id", id);
                 filterChain.doFilter(servletRequest, servletResponse);
             }else {
-                Map<String,String> map = new HashMap<>();
+                throw new NotLoggedInException();
+/*                Map<String,String> map = new HashMap<>();
                 map.put("errorMsg","未登录或登录过期");
                 JSONObject jsonObject = new JSONObject(map);
                 servletResponse.setContentType("application/json");
@@ -62,7 +64,7 @@ public class Filter implements jakarta.servlet.Filter {
                 PrintWriter pw=servletResponse.getWriter();
                 pw.write(jsonObject.toString());
                 pw.flush();
-                pw.close();
+                pw.close();*/
             }
         }
     }

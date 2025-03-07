@@ -41,8 +41,9 @@ public class LoginController {
                     .msg("身份只能选择学生或管理员")
                     .build();
         }
-        if(pwd.equals("SAdmin")) identity = "超级管理员";
+//        if(pwd.equals("SAdmin")) identity = "超级管理员";
         String selectedId = baseResponse.getData();
+        if(selectedId.equals("SAdmin")) identity = "超级管理员";//补上了漏洞，不判断密码而是验证filter返回的id
         if(!(selectedId==null)) {
             id = selectedId;
         }
